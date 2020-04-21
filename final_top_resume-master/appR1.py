@@ -82,15 +82,14 @@ def newfilterpage():
 @app.route('/rank/', methods=['GET', 'POST'])
 def rank():
     skill_input = list(request.form['skill'].split(","))
-    exp_input = request.form['exp']
+   min_exp_input = request.form['expmin']
+    if not min_exp_input:
+        min_exp_input =0
+    max_exp_input = request.form['expmax']
     print(skill_input)
-    print(exp_input)
-    # verose = False
-    # if "-v" in str(sys.argv):
-    #     verose = True
-    # p = Parse(verose)
-    # data= p.information
-    rated_data = rk.filterRanked(data,skill_input,exp_input)
+    print(min_exp_input)
+    print(max_exp_input) 
+    rated_data = rk.filterRanked(data,skill_input,min_exp_input,max_exp_input)
     return render_template('rank.html',data = rated_data)
 
 # --------DATA DOWNLOAD CODE-------
