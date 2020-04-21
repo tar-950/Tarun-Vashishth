@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mycss.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <title>Resume Data</title>
+    <style>
+      .flex-container {
+        display: flex;
+        justify-content: space-around;
+       flex-wrap: wrap;
+      }
+      
+      .flex-container > div {
+        background-color: #f1f1f1;
+        width: 28%;
+        height:250px;
+        margin-top:60px;
+        margin-left: 20px;
+        margin-right: 20px;
+        text-align: center;
+        line-height: 75px;
+        font-size: 30px;
+        border-radius: 20px;
+        box-shadow: 10px 20px 20px 10px rgba(0, 0, 0, 0.2), 10px 20px 20px 0px rgba(0, 0, 0, 0.19), 10px 20px 20px 0px rgba(0, 0, 0, 0.19);
+      }
+
+      .nameid{
+        text-transform: uppercase;
+        font-size: 18px;
+       color:green;
+      }
+
+      .btn0{
+        box-shadow: 0px 10px 10px 0px rgba(250, 250, 250, 0.808), 0px 10px 10px 0px rgba(204, 198, 198, 0.19);
+      }
+      .ulsha{
+        box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.459), 0px 10px 10px 0px rgba(20, 19, 19, 0.466);
+      }
+      .move:hover{
+       top:-5px;
+      }
+      .move{
+        top:0px;
+        position: relative;
+        transition: top .25s;
+        transition-timing-function: ease-out; 
+      }
+
+      </style>
+</head>
+
+<body style="background-image: url('/static/bb.jpg')"></body>
+
+
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+     {% for message in messages %}
+     <p style="text-align:center;background-color: rgb(18, 88, 18);margin-bottom: 0px;" id="demo">
+       <span style="color:white;" >{{ message }}</span>
+     <button style="color:red;border: none;background-color: green;" onclick="myFunction()">&#10006;</button>
+     </p>
+     {% endfor %}
+  {% endif %}
+ {% endwith %}
+
+
+  <ul class="ulsha">
+    <li><a href="/logout">LogOut</a></li>
+    <li><a class="nameid" href="#">{{ g.user.profile.firstName }}</a></li> 
+    <li><h style="padding-right:500px;font-family: 'Comic Sans MS';font-size: 45px;color:rgb(144, 214, 231)">Talento</h></li>
+    <li><img  style="margin-top:20px" src="{{ url_for('static', filename='logo.png') }}"></li>
+  </ul>
+
+
+  <div class="flex-container">
+    <div class="move"><h2 style="padding-top:15px;">All Data</h2>  
+      <p style="font-size: 20px;line-height: 130%;">Data includes Name, E-mail, Phone Number, Skills and Experience.</p> 
+      <a href="{{ url_for('hello') }}" class="btn0 btn btn-lg btn-info">Show all data <span class="glyphicon glyphicon-log-in"></span></a>
+      <a href="{{ url_for('downall') }}" class="btn0 btn btn-lg btn-info">Download Data<span class="glyphicon glyphicon-log-in"></span></a>
+    </div>
+
+    <div class="move" ><h2 style="padding-top:15px;">E-mails</h2>  
+      <p style="font-size: 20px;line-height: 130%;">Data includes all the E-mails extracted from resumes as csv.</p> 
+      <a href="{{ url_for('allmail') }}" class="btn0 btn btn-lg btn-info">Show data <span class="glyphicon glyphicon-log-in"></span></a>
+      <a href="{{ url_for('downmail') }}" class="btn0 btn btn-lg btn-info">Download E-mails<span class="glyphicon glyphicon-log-in"></span></a> 
+    </div>
+
+   <div class="move" ><h2 style="padding-top:15px;">Contacts</h2>  
+      <p style="font-size: 20px;line-height: 130%;">Data includes all the Phone numbers extracted from resumes as csv.</p> 
+      <a href="{{ url_for('allcontact') }}" class="btn0 btn btn-lg btn-info">Show data <span class="glyphicon glyphicon-log-in"></span></a>
+      <a href="{{ url_for('downcontact') }}" class="btn0 btn btn-lg btn-info">Download Contacts<span class="glyphicon glyphicon-log-in"></span></a> 
+    </div> 
+    <div class="move" ><h2 style="padding-top:15px;">Filter data</h2>  
+      <p style="font-size: 20px;line-height: 130%;">Find top-n resumes filtering skills and experience.</p> 
+      <a href="{{ url_for('newfilterpage') }}" class="btn0 btn btn-lg btn-info">Go Filter<span class="glyphicon glyphicon-log-in"></span></a>
+    </div> 
+  </div>
+  <span style="position: absolute;margin-left:50px;margin-top:-70px;color:white;">RC:{{count}}</span>
+  <footer style="color:white;margin-top:15px;" class="text-center">Created by LazyCoders</footer>
+  <script>
+    function myFunction() {
+      var myobj = document.getElementById("demo");
+      myobj.remove();
+    }
+    </script>
+  </body>
+  </html>

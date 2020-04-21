@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mycss.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking</title>
+    <style>
+      .ulsha{
+        box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.459), 0px 10px 10px 0px rgba(20, 19, 19, 0.466);
+      }
+    </style>
+</head>
+
+<body style="background-image: url('/static/bb.jpg')"></body>
+  <ul class="ulsha">
+    <li><a class="active" href="{{ url_for('filter') }}">Home</a></li>
+    <li><a style="color:green;" href="#">{{ g.user.profile.firstName }}</a></li> 
+    <li><h style="padding-right:490px;font-family: 'Comic Sans MS';font-size: 45px;color:rgb(144, 214, 231)">Talento</h></li>
+    <li><img  style="margin-top:20px" src="{{ url_for('static', filename='logo.png') }}"></li>
+  </ul>
+   <div style="width:400px;height:400px;margin-left:550px;margin-top: 100px;border-radius: 20px;
+   box-shadow: 10px 20px 20px 10px rgba(0, 0, 0, 0.2), 10px 20px 20px 0px rgba(0, 0, 0, 0.19), 10px 20px 20px 0px rgba(0, 0, 0, 0.19);"> 
+ 
+
+<form action="/rank/" style="border:0px solid red;padding-top:50px;margin-left: 10px;margin-right: 10px;" method = "POST">
+  <h2 style="color:white;margin-left: 90px;margin-top: -30px;margin-bottom: 50px;font-size: 42px;">Filter Data</h2>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <input style="margin-bottom:10px;width:280px;margin-left:50px;" type="text" name="skill" class="form-control" id="skill" placeholder="Type Skills">
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <input style="margin-bottom:10px;width:280px;margin-left:50px;" type="number" name="exp" class="form-control" id="exp" placeholder="Type Experience">
+    </div>
+  </div>
+  <input title="Filtering {{count}} resumes" style="width:280px;margin-left:50px;"type = "submit" value = "Filter" class="btn0 btn btn-lg btn-info"/>
+  </form>
+</div>
+</body>
+</html>
+
+<div class="tooltip">Hover over me
+  <span class="tooltiptext">Tooltip text</span>
+</div>
